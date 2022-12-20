@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import Box from 'components/Box/Box';
@@ -59,3 +60,7 @@ export default class ContactForm extends Component {
     );
   }
 }
+
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
