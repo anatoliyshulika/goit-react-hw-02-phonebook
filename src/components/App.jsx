@@ -11,7 +11,8 @@ class App extends Component {
     filter: '',
   };
 
-  addContact = ({ name, number }) => {
+  addContact = (values, actions) => {
+    const { name, number } = values;
     const contact = {
       id: shortid.generate(),
       name,
@@ -26,6 +27,7 @@ class App extends Component {
       this.setState(prevState => ({
         contacts: [contact, ...prevState.contacts],
       }));
+      actions.resetForm();
     }
   };
 

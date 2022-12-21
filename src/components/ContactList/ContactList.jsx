@@ -1,32 +1,19 @@
 import PropTypes from 'prop-types';
-import { Component } from 'react';
-import { List, ListItem, Button } from './ContactList.styled';
-import Box from 'components/Box/Box';
+import { List } from './ContactList.styled';
+import Contact from 'components/Contact/Contact';
 
-export default class ContactList extends Component {
-  render() {
-    const { contacts, onDelete } = this.props;
-    return (
-      <List>
-        {contacts.map(({ id, name, number }) => (
-          <ListItem key={id}>
-            <div>{name}:</div>
-            <Box
-              width={2}
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-            >
-              {number}
-              <Button type="button" onClick={() => onDelete(id)}>
-                Delete
-              </Button>
-            </Box>
-          </ListItem>
-        ))}
-      </List>
-    );
-  }
+export default function ContactList({ contacts, onDelete }) {
+  return (
+    <List>
+      {contacts.map(contact => (
+        <Contact
+          contact={contact}
+          onDelete={onDelete}
+          key={contact.id}
+        ></Contact>
+      ))}
+    </List>
+  );
 }
 
 ContactList.propTypes = {
@@ -39,3 +26,26 @@ ContactList.propTypes = {
   ).isRequired,
   onDelete: PropTypes.func.isRequired,
 };
+
+// export default function ContactList({ contacts, onDelete }) {
+//   return (
+//     <List>
+//       {contacts.map(({ id, name, number }) => (
+//         <ListItem key={id}>
+//           <div>{name}:</div>
+//           <Box
+//             width={2}
+//             display="flex"
+//             justifyContent="space-between"
+//             alignItems="center"
+//           >
+//             {number}
+//             <Button type="button" onClick={() => onDelete(id)}>
+//               Delete
+//             </Button>
+//           </Box>
+//         </ListItem>
+//       ))}
+//     </List>
+//   );
+// }
