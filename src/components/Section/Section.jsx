@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes, { element } from 'prop-types';
 import Box from 'components/Box/Box';
 
 export default function Section({ title, children }) {
@@ -12,5 +12,8 @@ export default function Section({ title, children }) {
 
 Section.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.shape({}),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(element),
+    PropTypes.element,
+  ]),
 };
